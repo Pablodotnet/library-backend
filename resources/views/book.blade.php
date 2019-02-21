@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+			@if (session('message'))
+				<div class="alert alert-info">{{ session('message') }}</div>
+			@endif
             <div class="panel panel-default">
 				<div class="panel-heading">
 					<span>Book: <strong>{{ $book->name }}</strong></span>
@@ -18,7 +21,7 @@
 					<hr>
 					<div>
 						<button type="button" class="btn btn-primary">Rent book</button>
-						<button type="button" class="btn btn-success">Edit</button>
+						<a href="{{ route('book.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
 						<form action="{{ route('book.delete', ['book' => $book]) }}" method="post">
 							<input class="btn btn-danger" type="submit" value="Delete" />
 							{!! method_field('delete') !!}

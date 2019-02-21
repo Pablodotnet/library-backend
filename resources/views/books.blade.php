@@ -11,15 +11,6 @@
 				</div>
 
                 <div class="panel-body">
-					{{-- <ul>
-						@foreach ($books as $book)
-							<li>
-								<a class="btn btn-link" href="{{ route('book', ['book' => $book]) }}">
-									{{ $book->name }}
-								</a>
-							</li>
-						@endforeach
-					</ul> --}}
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
@@ -30,7 +21,7 @@
 							</tr>
 						</thead>
 						<tbody>
-								@foreach($books as $book)
+								@forelse($books as $book)
 								<tr>
 									<td>{{$book->id}}</td>
 									<td>
@@ -47,11 +38,16 @@
 										@endif
 									</td>
 								</tr>
-								@endforeach
+								@empty
+								<span>No books found</span>
+								@endforelse
 						</tbody>
 					</table>
 					<div class="text-center">
 						{{ $books->links() }}
+					</div>
+					<div>
+						<a href="{{ route('books.create') }}" class="btn btn-success">Create New Book</a>
 					</div>
                 </div>
             </div>

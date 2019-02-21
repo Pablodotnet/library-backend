@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
 use App\Book;
 
 class BookController extends Controller
@@ -20,18 +21,30 @@ class BookController extends Controller
 		return view('book')->with(['book' => $book]);
 	}
 
-	public function store(Request $request)
+	public function create()
+	{
+		return view('createBook');
+	}
+
+	public function store(StoreBookRequest $request)
 	{
 		$book = Book::create($request->all());
 
-		return response()->json($book, 201);
+		// return response()->json($book, 201);
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);;
 	}
 
-	public function update(Request $request, Book $book)
+	public function edit(Book $book)
+	{
+		return view('editBook', ['book' => $book]);
+	}
+
+	public function update(StoreBookRequest $request, Book $book)
 	{
 		$book->update($request->all());
 
-		return response()->json($book, 200);
+		// return response()->json($book, 200);
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);;
 	}
 
 	public function delete(Book $book)
