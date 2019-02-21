@@ -18,4 +18,8 @@ Route::get('/', function () {
 Route::group(['middleware' => 'prevent.back.history'], function() {
 	Auth::routes();
 	Route::get('/home', 'HomeController@index')->name('home');
+	// Book Routes
+	Route::get('/books', 'BookController@index')->name('books');
+	Route::get('/books/{book}', 'BookController@show')->name('book');
+	Route::delete('books/{book}', 'BookController@delete')->name('book.delete');
 });

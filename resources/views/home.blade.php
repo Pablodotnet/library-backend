@@ -13,12 +13,14 @@
                             {{ session('status') }}
                         </div>
 					@endif
-
-					@if (Auth::user())
-						<h1>{{ Auth::user()->name }}</h1>
-					@endif
-
+					
                     You are logged in!
+					<h1>{{ Auth::user()->name }}</h1>
+
+					Now you can get some books
+					<hr>
+					<a class="btn btn-link" href="{{ route('books') }}">Books</a>
+					<hr>
                 </div>
             </div>
         </div>

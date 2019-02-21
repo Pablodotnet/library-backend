@@ -9,12 +9,15 @@ class BookController extends Controller
 {
 	public function index()
 	{
-		return Book::all();
+		$books = Book::paginate(10);
+		// return Book::all();
+		return view('books')->with(['books' => $books]);
 	}
 
 	public function show(Book $book)
 	{
-		return $book;
+		// return $book;
+		return view('book')->with(['book' => $book]);
 	}
 
 	public function store(Request $request)
@@ -35,6 +38,7 @@ class BookController extends Controller
 	{
 		$book->delete();
 
-		return response()->json(null, 204);
+		// return response()->json(null, 204);
+		return redirect()->route('books')->with(['books' => Book::all()]);
 	}
 }
