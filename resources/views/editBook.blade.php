@@ -21,23 +21,27 @@
 					<form action="{{ route('book.update', ['book' => $book]) }}" method="post">
 						<input type="hidden" name="_method" value="PUT">
 						{{ csrf_field() }}
-						Name:
+						* Name:
 						<br />
 						<input type="text" name="name" value="{{ $book->name }}" />
 						<br /><br />
-						Author:
+						* Author:
 						<br />
 						<input type="text" name="author" value="{{ $book->author }}" />
 						<br /><br />
-						Published date:
+						* Published date:
 						<br />
-						<input type="text" name="published_date" value="{{ $book->published_date }}" />
+						<input type="date" name="published_date" value="{{ $book->published_date }}" />
 						<br /><br />
-						Category:
+						* Category:
 						<br />
-						<input type="text" name="category" value="{{ $book->category }}" />
+						<select class="form-control" name="category">
+								@foreach($categories as $category)
+									<option {{ ($category == $book->category ? 'selected' : '') }}>{{ $category->name }}</option>
+								@endforeach
+							</select>
 						<br /><br />
-						<input type="submit" value="Edit" class="btn btn-success" />
+						<input type="submit" value="Accept" class="btn btn-success" />
 						<a value="Cancel" class="btn btn-danger" href="{{ route('book', ['book' => $book]) }}">Cancel</a>
 					</form>
                 </div>

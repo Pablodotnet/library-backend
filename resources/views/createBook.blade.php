@@ -20,21 +20,25 @@
 					@endif
 					<form action="{{ route('books.store') }}" method="post">
 						{{ csrf_field() }}
-						Name:
+						* Name:
 						<br />
 						<input type="text" name="name" value="{{ old('name') }}" />
 						<br /><br />
-						Author:
+						* Author:
 						<br />
 						<input type="text" name="author" value="{{ old('author') }}" />
 						<br /><br />
-						Published date:
+						* Published date:
 						<br />
-						<input type="text" name="published_date" value="{{ old('published_date') }}" />
+						<input type="date" name="published_date" value="{{ old('published_date') }}" />
 						<br /><br />
-						Category:
+						* Category:
 						<br />
-						<input type="text" name="category" value="{{ old('category') }}" />
+						<select class="form-control" name="category">
+							@foreach($categories as $category)
+								<option>{{ $category->name }}</option>
+							@endforeach
+						</select>
 						<br /><br />
 						<input type="submit" value="Create" class="btn btn-default" />
 					</form>

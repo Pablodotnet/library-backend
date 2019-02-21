@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreBookRequest;
 use App\Book;
+use App\Category;
 
 class BookController extends Controller
 {
@@ -23,12 +24,18 @@ class BookController extends Controller
 
 	public function create()
 	{
-		return view('createBook');
+		$categories = Category::all();
+
+		return view('createBook', ['categories' => $categories]);
 	}
 
 	public function store(StoreBookRequest $request)
 	{
 		$book = Book::create($request->all());
+
+		// Assigning the category requested
+		$category = Category::where('name', $request->category)->firstOrFail();
+		$category->books()->save($book);
 
 		// return response()->json($book, 201);
 		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);;
@@ -36,7 +43,9 @@ class BookController extends Controller
 
 	public function edit(Book $book)
 	{
-		return view('editBook', ['book' => $book]);
+		$categories = Category::all();
+
+		return view('editBook', ['book' => $book, 'categories' => $categories]);
 	}
 
 	public function update(StoreBookRequest $request, Book $book)

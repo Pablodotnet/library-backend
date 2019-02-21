@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
     {
 		if (app()->environment("local")) {
 			$this->call('UsersTableSeeder');
-			$this->call('BooksTableSeeder');
 			$this->call('CategoriesTableSeeder');
+			$this->call('BooksTableSeeder');
 		}
 
 		if (app()->environment("testing")) {

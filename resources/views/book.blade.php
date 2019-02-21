@@ -18,6 +18,7 @@
 					<p><strong>Name: </strong>{{ $book->name }}</p>
 					<p><strong>Author: </strong>{{ $book->author }}</p>
 					<p><strong>Published Date: </strong>{{ $book->published_date }}</p>
+					<p><strong>Category: </strong>{{ $book->category->name }}</p>
 					<hr>
 					<div>
 						<button type="button" class="btn btn-primary">Rent book</button>
