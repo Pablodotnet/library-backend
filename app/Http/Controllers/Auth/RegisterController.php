@@ -90,6 +90,7 @@ class RegisterController extends Controller
 		$this->guard()->login($user);
 
 		// If registered returns null it redirects to another url
-		return $this->registered($request, $user) ?: redirect($this->redirectPath());
+		// return $this->registered($request, $user) ?: redirect($this->redirectPath());
+		return redirect()->route('home');
 	}
 }
