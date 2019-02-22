@@ -10,7 +10,9 @@
             <div class="panel panel-default">
 				<div class="panel-heading">
 					<span>Book: <strong>{{ $book->name }}</strong></span>
-					<a class="btn btn-link" href="{{ route('books') }}" style="float: right !important; padding: 0px;">Back to books</a>
+					<span class="pull-right">
+						<a class="btn btn-link" href="{{ route('books') }}" style="padding: 0px;">Back to books</a>
+					</span>
 				</div>
 
                 <div class="panel-body">
@@ -23,27 +25,29 @@
 					<div>
 						@if ($book->user_id)
 							@if ($book->user_id === Auth::user()->id)
-								<form action="{{ route('book.return', ['book' => $book]) }}" method="post">
-									<input type="hidden" name="_method" value="PUT">
-									{{ csrf_field() }}
-									<input type="submit" value="Return this book" class="btn btn-primary" />
-								</form>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookStatusModal">
+									Return book
+								</button>
+								@include('layouts.modal', ['book' => $book, 'action' => 'return'])
 							@else
 								Not available for rent
 							@endif
 						@else
-							<form action="{{ route('book.rent', ['book' => $book]) }}" method="post">
-								<input type="hidden" name="_method" value="PUT">
-								{{ csrf_field() }}
-								<input type="submit" value="Rent this book" class="btn btn-primary" />
-							</form>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookStatusModal">
+								Rent book
+							</button>
+							@include('layouts.modal', ['book' => $book, 'action' => 'rent'])
 						@endif
-						<a href="{{ route('book.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
-						<form action="{{ route('book.delete', ['book' => $book]) }}" method="post">
-							<input class="btn btn-danger" type="submit" value="Delete" />
-							{!! method_field('delete') !!}
-							{!! csrf_field() !!}
-						</form>
+						@if (!$book->user_id || ($book->user_id && $book->user_id === Auth::user()->id))	
+							<a href="{{ route('book.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
+							<span class="pull-right">
+								<form action="{{ route('book.delete', ['book' => $book]) }}" method="post">
+									<input class="btn btn-danger" type="submit" value="Delete" />
+									{!! method_field('delete') !!}
+									{!! csrf_field() !!}
+								</form>
+							</span>
+						@endif
 					</div>
                 </div>
             </div>

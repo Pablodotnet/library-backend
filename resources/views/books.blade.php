@@ -7,7 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
 					Books
-					<a class="btn btn-link" href="{{ route('home') }}" style="float: right !important; padding: 0px;">Back to home</a>
+					<span class="pull-right">
+						<a class="btn btn-link" href="{{ route('home') }}" style="padding: 0px;">Back to home</a>
+					</span>
 				</div>
 
                 <div class="panel-body">
@@ -62,7 +64,7 @@
 					<div class="text-center">
 						{{ $books->links() }}
 					</div>
-					<div>
+					<div class="pull-right">
 						<a href="{{ route('books.create') }}" class="btn btn-success">Create New Book</a>
 					</div>
                 </div>
