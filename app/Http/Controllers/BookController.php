@@ -9,11 +9,19 @@ use App\Category;
 
 class BookController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$books = Book::paginate(10);
-		// return Book::all();
-		return view('books')->with(['books' => $books]);
+		\Log::info($request);
+		$categories = Category::all();
+		
+		if ($request->has('category')) {
+			$category = Category::where('name', $request->category)->firstOrFail();
+			$books = Book::where('category_id', $category->id)->paginate(10)->appends('category', $request->category);
+			return view('books')->with(['books' => $books, 'categories' => $categories]);
+		} else {
+			$books = Book::paginate(10);
+			return view('books')->with(['books' => $books, 'categories' => $categories]);
+		}
 	}
 
 	public function show(Book $book)

@@ -11,12 +11,27 @@
 				</div>
 
                 <div class="panel-body">
+					Select category to filter list:
+					<form action="{{ route('books') }}" method="GET">
+						<select class="form-control autocomplete-select" name="category">
+							@foreach($categories as $category)
+								<option>{{ $category->name }}</option>
+							@endforeach
+						</select>
+						<br /><br />
+						<button type="submit" class="btn btn-success">Filter</button>
+						<a class="btn btn-warning" href="{{ route('books') }}">
+							Reset
+						</a>
+					</form>
+					<hr>
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
 								<th>id</th>
 								<th>Name</th>
 								<th>Author</th>
+								<th>Category</th>
 								<th>Available</th>
 							</tr>
 						</thead>
@@ -30,6 +45,7 @@
 										</a>
 									</td>
 									<td>{{$book->author}}</td>
+									<td>{{$book->category->name}}</td>
 									<td>
 										@if ($book->user_id)
 											Unavailable
@@ -39,7 +55,7 @@
 									</td>
 								</tr>
 								@empty
-								<span>No books found</span>
+									<span>No books found</span>
 								@endforelse
 						</tbody>
 					</table>
