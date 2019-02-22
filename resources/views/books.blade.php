@@ -48,7 +48,7 @@
 									<td>{{$book->category->name}}</td>
 									<td>
 										@if ($book->user_id)
-											Unavailable
+											Rented
 										@else
 											Available
 										@endif

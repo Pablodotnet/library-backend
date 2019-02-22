@@ -21,7 +21,23 @@
 					<p><strong>Category: </strong>{{ $book->category->name }}</p>
 					<hr>
 					<div>
-						<button type="button" class="btn btn-primary">Rent book</button>
+						@if ($book->user_id)
+							@if ($book->user_id === Auth::user()->id)
+								<form action="{{ route('book.return', ['book' => $book]) }}" method="post">
+									<input type="hidden" name="_method" value="PUT">
+									{{ csrf_field() }}
+									<input type="submit" value="Return this book" class="btn btn-primary" />
+								</form>
+							@else
+								Not available for rent
+							@endif
+						@else
+							<form action="{{ route('book.rent', ['book' => $book]) }}" method="post">
+								<input type="hidden" name="_method" value="PUT">
+								{{ csrf_field() }}
+								<input type="submit" value="Rent this book" class="btn btn-primary" />
+							</form>
+						@endif
 						<a href="{{ route('book.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
 						<form action="{{ route('book.delete', ['book' => $book]) }}" method="post">
 							<input class="btn btn-danger" type="submit" value="Delete" />

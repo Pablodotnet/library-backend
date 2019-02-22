@@ -26,4 +26,6 @@ Route::group(['middleware' => 'prevent.back.history'], function() {
 	Route::get('/books/{book}/edit', 'BookController@edit')->name('book.edit');
 	Route::put('books/{book}', 'BookController@update')->name('book.update');
 	Route::delete('books/{book}', 'BookController@delete')->name('book.delete');
+	Route::put('books/{book}/rent', 'BookController@rent')->name('book.rent');
+	Route::put('books/{book}/return', 'BookController@return')->name('book.return');
 });

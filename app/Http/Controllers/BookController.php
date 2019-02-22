@@ -11,7 +11,6 @@ class BookController extends Controller
 {
 	public function index(Request $request)
 	{
-		\Log::info($request);
 		$categories = Category::all();
 		
 		if ($request->has('category')) {
@@ -61,7 +60,7 @@ class BookController extends Controller
 		$book->update($request->all());
 
 		// return response()->json($book, 200);
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);;
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);
 	}
 
 	public function delete(Book $book)
@@ -70,5 +69,28 @@ class BookController extends Controller
 
 		// return response()->json(null, 204);
 		return redirect()->route('books')->with(['books' => Book::all()]);
+	}
+
+	public function rent(Request $request, Book $book)
+	{
+		$user = $request->user();
+
+		if ($user->book) {
+			$user->book->user()->dissociate();
+			$user->book->save();
+		}
+		$user->book()->save($book);
+
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book rented successfully']);
+	}
+
+	public function return(Request $request, Book $book)
+	{
+		$user = $request->user();
+
+		$user->book->user()->dissociate();
+		$user->book->save();
+
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book returned successfully']);
 	}
 }
