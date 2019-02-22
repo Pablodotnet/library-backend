@@ -35,7 +35,7 @@
 						<br /><br />
 						* Category:
 						<br />
-						<select class="form-control" name="category">
+						<select class="form-control autocomplete-select" name="category">
 								@foreach($categories as $category)
 									<option {{ ($category == $book->category ? 'selected' : '') }}>{{ $category->name }}</option>
 								@endforeach
