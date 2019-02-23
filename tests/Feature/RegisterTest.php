@@ -15,7 +15,7 @@ class RegisterTest extends TestCase
 	 */
 	public function testRegistrationWithoutRequiredFields()
 	{
-		$this->json('POST', '/api/register')
+		$this->json('POST', '/register')
 			->assertStatus(422)
 			->assertJson([
 				'name' => ['The name field is required.'],
@@ -36,7 +36,7 @@ class RegisterTest extends TestCase
 			'password' => 'testing123',
 		];
 
-		$this->json('POST', '/api/register', $payload)
+		$this->json('POST', '/register', $payload)
 			->assertStatus(422)
 			->assertJson([
 				'password' => ['The password confirmation does not match.'],
@@ -56,17 +56,8 @@ class RegisterTest extends TestCase
 			'password_confirmation' => 'testing123',
 		];
 
-		$this->json('POST', '/api/register', $payload)
-			->assertStatus(201)
-			->assertJsonStructure([
-				'data' => [
-					'id',
-					'name',
-					'email',
-					'created_at',
-					'updated_at',
-					'api_token'
-				],
-			]);
+		$this->json('POST', '/register', $payload)
+			->assertStatus(302)
+			->assertRedirect('/home');
     }
 }

@@ -25,7 +25,6 @@ class BookController extends Controller
 
 	public function show(Book $book)
 	{
-		// return $book;
 		return view('book')->with(['book' => $book]);
 	}
 
@@ -44,8 +43,7 @@ class BookController extends Controller
 		$category = Category::where('name', $request->category)->firstOrFail();
 		$category->books()->save($book);
 
-		// return response()->json($book, 201);
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);;
+		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);
 	}
 
 	public function edit(Book $book)
@@ -59,7 +57,6 @@ class BookController extends Controller
 	{
 		$book->update($request->all());
 
-		// return response()->json($book, 200);
 		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);
 	}
 
@@ -67,7 +64,6 @@ class BookController extends Controller
 	{
 		$book->delete();
 
-		// return response()->json(null, 204);
 		return redirect()->route('books')->with(['books' => Book::all()]);
 	}
 
