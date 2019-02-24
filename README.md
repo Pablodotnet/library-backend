@@ -19,12 +19,6 @@ docker-compose exec app bash
 # Installing dependencies
 composer install
 
-# Generate Key
-php artisan key:generate
-
-# Cache settings
-php artisan config:cache
-
 # Run migrations
 php artisan migrate
 
