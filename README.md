@@ -18,7 +18,18 @@ docker-compose exec app bash
 
 # Installing dependencies
 composer install
-npm install
+
+# Generate Key
+php artisan key:generate
+
+# Cache settings
+php artisan config:cache
+
+# Run migrations
+php artisan migrate
+
+# Run seeders
+php artisan db:seed
 
 # Run tests
 composer test
