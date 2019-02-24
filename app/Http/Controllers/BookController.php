@@ -64,7 +64,7 @@ class BookController extends Controller
 	{
 		$book->delete();
 
-		return redirect()->route('books')->with(['books' => Book::all()]);
+		return redirect()->route('books')->with(['books' => Book::all()])->with(['message' => 'Book deleted successfully']);
 	}
 
 	public function rent(Request $request, Book $book)
