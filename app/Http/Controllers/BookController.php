@@ -16,7 +16,7 @@ class BookController extends Controller
 		if ($request->has('category')) {
 			$category = Category::where('name', $request->category)->firstOrFail();
 			$books = Book::where('category_id', $category->id)->paginate(10)->appends('category', $request->category);
-			return view('books')->with(['books' => $books, 'categories' => $categories]);
+			return view('books')->with(['books' => $books, 'categories' => $categories, 'message' => "Filtered by: $category->name"]);
 		} else {
 			$books = Book::paginate(10);
 			return view('books')->with(['books' => $books, 'categories' => $categories]);
