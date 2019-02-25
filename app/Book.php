@@ -19,7 +19,7 @@ class Book extends Model
 	 */
 	public function category()
 	{
-		return $this->hasOne('App\Category');
+		return $this->belongsTo('App\Category');
 	}
 	
 	protected $fillable = ['name', 'author', 'published_date'];

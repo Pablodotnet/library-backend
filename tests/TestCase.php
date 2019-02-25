@@ -15,8 +15,6 @@ abstract class TestCase extends BaseTestCase
 	public function setUp()
 	{
 		parent::setUp();
-		// Truncate user and book to reset sqlite db
-		User::truncate();
-		Book::truncate();
+		Artisan::call('db:seed');
 	}
 }

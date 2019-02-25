@@ -16,7 +16,7 @@ class LoginTest extends TestCase
      */
     public function testLoginWithoutRequiredFields()
     {
-		$this->json('POST', 'api/login')
+		$this->json('POST', '/login')
 			->assertStatus(422)
 			->assertJson([
 				'email' => ['The email field is required.'],
@@ -37,17 +37,8 @@ class LoginTest extends TestCase
 
 		$payload = ['email' => 'test@user.com', 'password' => 'testing123'];
 
-		$this->json('POST', 'api/login', $payload)
-			->assertStatus(200)
-			->assertJsonStructure([
-				'data' => [
-					'id',
-					'name',
-					'email',
-					'created_at',
-					'updated_at',
-					'api_token',
-				],
-			]);
+		$this->json('POST', '/login', $payload)
+			->assertStatus(302)
+			->assertRedirect('/home');
 	}
 }

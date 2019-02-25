@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth')->get('/user', function (Request $request) {
 	return $request->user();
 });
 
@@ -23,19 +23,10 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
 // Book routes
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'auth'], function() {
 	Route::get('books', 'BookController@index');
 	Route::get('books/{book}', 'BookController@show');
 	Route::post('books', 'BookController@store');
 	Route::put('books/{book}', 'BookController@update');
 	Route::delete('books/{book}', 'BookController@delete');
-});
-
-// Category routes
-Route::group(['middleware' => 'auth:api'], function() {
-	Route::get('categories', 'CategoryController@index');
-	Route::get('categories/{category}', 'CategoryController@show');
-	Route::post('categories', 'CategoryController@store');
-	Route::put('categories/{category}', 'CategoryController@update');
-	Route::delete('categories/{category}', 'CategoryController@delete');
 });
