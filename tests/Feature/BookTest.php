@@ -87,33 +87,10 @@ class BookTest extends TestCase
 	 */
 	public function testCorrectListBook()
 	{
-		factory(Book::class)->create([
-			'name' => 'A book',
-			'author' => 'An author',
-			'published_date' => '2018-08-08 09:09:09',
-			'category_id' => '2',
-		]);
-
-		factory(Book::class)->create([
-			'name' => 'A cool book',
-			'author' => 'A cool author',
-			'published_date' => '2017-07-07 08:08:08',
-			'category_id' => '3',
-		]);
-
 		$user = factory(User::class)->create();
 
 		$response = $this->actingAs($user, 'api')->json('GET', '/books');
-		$response->assertStatus(200);
-	}
-
-	/**
-     * Testing return books view
-     *
-     */
-	public function testBooksView()
-	{
-		$this->get('/books')
-			->assertStatus(302);
+		$response->assertStatus(200)
+				->assertViewIs('books');
 	}
 }
