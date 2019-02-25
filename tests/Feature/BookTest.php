@@ -114,7 +114,6 @@ class BookTest extends TestCase
 	public function testBooksView()
 	{
 		$this->get('/books')
-			->assertStatus(200)
-			->assertViewIs('books');
+			->assertStatus(302);
 	}
 }
