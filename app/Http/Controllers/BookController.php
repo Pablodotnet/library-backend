@@ -9,6 +9,10 @@ use App\Category;
 
 class BookController extends Controller
 {
+	/**
+	 * Show the list of books
+	 * 
+	 */
 	public function index(Request $request)
 	{
 		$categories = Category::all();
@@ -23,11 +27,19 @@ class BookController extends Controller
 		}
 	}
 
+	/**
+	 * Show the a specific requested book
+	 * 
+	 */
 	public function show(Book $book)
 	{
 		return view('book')->with(['book' => $book]);
 	}
 
+	/**
+	 * Show the book creation view
+	 * 
+	 */
 	public function create()
 	{
 		$categories = Category::all();
@@ -35,6 +47,10 @@ class BookController extends Controller
 		return view('createBook', ['categories' => $categories]);
 	}
 
+	/**
+	 * Store a new book
+	 * 
+	 */
 	public function store(StoreBookRequest $request)
 	{
 		$book = Book::create($request->all());
@@ -46,6 +62,10 @@ class BookController extends Controller
 		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);
 	}
 
+	/**
+	 * Show the book edition view
+	 * 
+	 */
 	public function edit(Book $book)
 	{
 		$categories = Category::all();
@@ -53,6 +73,10 @@ class BookController extends Controller
 		return view('editBook', ['book' => $book, 'categories' => $categories]);
 	}
 
+	/**
+	 * Update a specific book
+	 * 
+	 */
 	public function update(StoreBookRequest $request, Book $book)
 	{
 		$book->update($request->all());
@@ -60,6 +84,10 @@ class BookController extends Controller
 		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);
 	}
 
+	/**
+	 * Delete a specific book
+	 * 
+	 */
 	public function delete(Book $book)
 	{
 		$book->delete();
@@ -67,6 +95,12 @@ class BookController extends Controller
 		return redirect()->route('books')->with(['books' => Book::all()])->with(['message' => 'Book deleted successfully']);
 	}
 
+	/**
+	 * Change status of a specific book to rented
+	 * if user already has a book, it returns it before
+	 * renting the new one
+	 * 
+	 */
 	public function rent(Request $request, Book $book)
 	{
 		$user = $request->user();
@@ -80,6 +114,10 @@ class BookController extends Controller
 		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book rented successfully']);
 	}
 
+	/**
+	 * Change the status of a book to available
+	 * 
+	 */
 	public function return(Request $request, Book $book)
 	{
 		$user = $request->user();
