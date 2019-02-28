@@ -7,7 +7,9 @@
             <div class="panel panel-default">
 				<div class="panel-heading">
 					<span>Editing book</span>
-					<a class="btn btn-link" href="{{ route('book', ['book' => $book]) }}" style="float: right !important; padding: 0px;">Back to book</a>
+					<span class="pull-right">
+						<a class="btn btn-link no-padding" href="{{ route('books.show', ['book' => $book]) }}">Back to book</a>
+					</span>
 				</div>
 
                 <div class="panel-body">
@@ -18,7 +20,7 @@
 							@endforeach
 						</ul>
 					@endif
-					<form action="{{ route('book.update', ['book' => $book]) }}" method="post">
+					<form action="{{ route('books.update', ['book' => $book]) }}" method="post">
 						<input type="hidden" name="_method" value="PUT">
 						{{ csrf_field() }}
 						* Name:
@@ -42,7 +44,7 @@
 							</select>
 						<br /><br />
 						<input type="submit" value="Accept" class="btn btn-success" />
-						<a value="Cancel" class="btn btn-danger" href="{{ route('book', ['book' => $book]) }}">Cancel</a>
+						<a value="Cancel" class="btn btn-danger" href="{{ route('books.show', ['book' => $book]) }}">Cancel</a>
 					</form>
                 </div>
             </div>

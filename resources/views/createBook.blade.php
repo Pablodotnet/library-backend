@@ -7,7 +7,9 @@
             <div class="panel panel-default">
 				<div class="panel-heading">
 					<span>Create new book</span>
-					<a class="btn btn-link" href="{{ route('books') }}" style="float: right !important; padding: 0px;">Back to books</a>
+					<span class="pull-right">
+						<a class="btn btn-link no-padding" href="{{ route('books.index') }}">Back to books</a>
+					</span>
 				</div>
 
                 <div class="panel-body">

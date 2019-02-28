@@ -11,7 +11,7 @@
 				<div class="panel-heading">
 					<span>Book: <strong>{{ $book->name }}</strong></span>
 					<span class="pull-right">
-						<a class="btn btn-link" href="{{ route('books') }}" style="padding: 0px;">Back to books</a>
+						<a class="btn btn-link no-padding" href="{{ route('books.index') }}">Back to books</a>
 					</span>
 				</div>
 
@@ -28,7 +28,7 @@
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookStatusModal">
 									Return book
 								</button>
-								@include('layouts.modal', ['book' => $book, 'action' => 'return'])
+								@include('layouts.modal', ['book' => $book, 'action' => 'returnBook'])
 							@else
 								Not available for rent
 							@endif
@@ -39,9 +39,9 @@
 							@include('layouts.modal', ['book' => $book, 'action' => 'rent'])
 						@endif
 						@if (!$book->user_id || ($book->user_id && $book->user_id === Auth::user()->id))	
-							<a href="{{ route('book.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
+							<a href="{{ route('books.edit', ['book' => $book]) }}" class="btn btn-success">Edit</a>
 							<span class="pull-right">
-								<form action="{{ route('book.delete', ['book' => $book]) }}" method="post">
+								<form action="{{ route('books.destroy', ['book' => $book]) }}" method="post">
 									<input class="btn btn-danger" type="submit" value="Delete" />
 									{!! method_field('delete') !!}
 									{!! csrf_field() !!}

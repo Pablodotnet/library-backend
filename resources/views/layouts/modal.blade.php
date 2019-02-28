@@ -15,11 +15,11 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<span class="pull-right" style="margin-left: 10px;">
-					<form action="{{ route('book.'.$action, ['book' => $book]) }}" method="post">
+				<span class="pull-right m-l-10">
+					<form action="{{ route('books.'.$action, ['book' => $book]) }}" method="post">
 						<input type="hidden" name="_method" value="PUT">
 						{{ csrf_field() }}
-						<input type="submit" value="{{ $action }} this book" class="btn btn-primary text-capitalize" />
+						<input type="submit" value="{{ $action === 'returnBook' ? 'Return' : 'Rent' }} this book" class="btn btn-primary text-capitalize" />
 					</form>
 				</span>
 			</div>

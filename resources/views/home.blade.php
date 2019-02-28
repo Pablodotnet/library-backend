@@ -19,7 +19,7 @@
 
 					Now you can get some books
 					<hr>
-					<a class="btn btn-link" href="{{ route('books') }}">Books</a>
+					<a class="btn btn-link" href="{{ route('books.index') }}">Books</a>
 					<hr>
                 </div>
             </div>

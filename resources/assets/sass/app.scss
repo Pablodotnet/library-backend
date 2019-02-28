@@ -1,4 +1,3 @@
-
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
@@ -7,3 +6,26 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Project classes
+.no-padding {
+	padding: 0px;
+}
+
+.display-none {
+	display: none;
+}
+
+.m-l-10 {
+	margin-left: 10px;
+}
+
+.select2-container {
+	width: 100% !important;
+}
+
+@media only screen and (max-width: 600px) {
+	.hide-sm {
+		display: none;
+	}
+}
