@@ -38,7 +38,7 @@
 							<tr>
 								<th>id</th>
 								<th>Name</th>
-								<th>Author</th>
+								<th class="hide-sm">Author</th>
 								<th>Category</th>
 								<th>Available</th>
 							</tr>
@@ -52,7 +52,7 @@
 											{{ $book->name }}
 										</a>
 									</td>
-									<td>{{$book->author}}</td>
+									<td class="hide-sm">{{$book->author}}</td>
 									<td>{{$book->category->name}}</td>
 									<td>
 										@if ($book->user_id)
