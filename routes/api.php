@@ -24,9 +24,5 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 // Book routes
 Route::group(['middleware' => 'auth'], function() {
-	Route::get('books', 'BookController@index');
-	Route::get('books/{book}', 'BookController@show');
-	Route::post('books', 'BookController@store');
-	Route::put('books/{book}', 'BookController@update');
-	Route::delete('books/{book}', 'BookController@delete');
+	Route::resource('books', 'BookController');
 });

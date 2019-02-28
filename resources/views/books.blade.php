@@ -20,7 +20,7 @@
 
                 <div class="panel-body">
 					Select category to filter list:
-					<form action="{{ route('books') }}" method="GET">
+					<form action="{{ route('books.index') }}" method="GET">
 						<select class="form-control autocomplete-select" name="category">
 							@foreach($categories as $category)
 								<option>{{ $category->name }}</option>
@@ -28,7 +28,7 @@
 						</select>
 						<br /><br />
 						<button type="submit" class="btn btn-success">Filter</button>
-						<a class="btn btn-warning" href="{{ route('books') }}">
+						<a class="btn btn-warning" href="{{ route('books.index') }}">
 							Reset
 						</a>
 					</form>
@@ -48,7 +48,7 @@
 								<tr>
 									<td>{{$book->id}}</td>
 									<td>
-										<a href="{{ route('book', ['book' => $book]) }}">
+										<a href="{{ route('books.show', ['book' => $book]) }}">
 											{{ $book->name }}
 										</a>
 									</td>

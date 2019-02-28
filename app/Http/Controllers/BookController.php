@@ -59,7 +59,7 @@ class BookController extends Controller
 		$category = Category::where('name', $request->category)->firstOrFail();
 		$category->books()->save($book);
 
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book created successfully']);
+		return redirect()->route('books.show', ['book' => $book])->with(['message' => 'Book created successfully']);
 	}
 
 	/**
@@ -81,18 +81,18 @@ class BookController extends Controller
 	{
 		$book->update($request->all());
 
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book updated successfully']);
+		return redirect()->route('books.show', ['book' => $book])->with(['message' => 'Book updated successfully']);
 	}
 
 	/**
 	 * Delete a specific book
 	 * 
 	 */
-	public function delete(Book $book)
+	public function destroy(Book $book)
 	{
 		$book->delete();
 
-		return redirect()->route('books')->with(['books' => Book::all()])->with(['message' => 'Book deleted successfully']);
+		return redirect()->route('books.index')->with(['books' => Book::all()])->with(['message' => 'Book deleted successfully']);
 	}
 
 	/**
@@ -111,20 +111,20 @@ class BookController extends Controller
 		}
 		$user->book()->save($book);
 
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book rented successfully']);
+		return redirect()->route('books.show', ['book' => $book])->with(['message' => 'Book rented successfully']);
 	}
 
 	/**
 	 * Change the status of a book to available
 	 * 
 	 */
-	public function return(Request $request, Book $book)
+	public function returnBook(Request $request, Book $book)
 	{
 		$user = $request->user();
 
 		$user->book->user()->dissociate();
 		$user->book->save();
 
-		return redirect()->route('book', ['book' => $book])->with(['message' => 'Book returned successfully']);
+		return redirect()->route('books.show', ['book' => $book])->with(['message' => 'Book returned successfully']);
 	}
 }

@@ -8,7 +8,7 @@
 				<div class="panel-heading">
 					<span>Create new book</span>
 					<span class="pull-right">
-						<a class="btn btn-link no-padding" href="{{ route('books') }}">Back to books</a>
+						<a class="btn btn-link no-padding" href="{{ route('books.index') }}">Back to books</a>
 					</span>
 				</div>
 
