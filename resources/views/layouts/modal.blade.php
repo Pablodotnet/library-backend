@@ -15,7 +15,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<span class="pull-right" style="margin-left: 10px;">
+				<span class="pull-right m-l-10">
 					<form action="{{ route('book.'.$action, ['book' => $book]) }}" method="post">
 						<input type="hidden" name="_method" value="PUT">
 						{{ csrf_field() }}

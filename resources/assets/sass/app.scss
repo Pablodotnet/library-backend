@@ -7,3 +7,16 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Project classes
+.no-padding {
+	padding: 0px;
+}
+
+.display-none {
+	display: none;
+}
+
+.m-l-10 {
+	margin-left: 10px;
+}

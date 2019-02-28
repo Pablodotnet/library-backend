@@ -14,7 +14,7 @@
                 <div class="panel-heading">
 					Books
 					<span class="pull-right">
-						<a class="btn btn-link" href="{{ route('home') }}" style="padding: 0px;">Back to home</a>
+						<a class="btn btn-link no-padding" href="{{ route('home') }}">Back to home</a>
 					</span>
 				</div>
 
